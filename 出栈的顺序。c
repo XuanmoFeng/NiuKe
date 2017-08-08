@@ -1,0 +1,49 @@
+/*************************************************************************
+	> File Name: StackShunxu.cpp
+	> Author: 
+	> Mail: 
+	> Created Time: Thu 20 Jul 2017 10:54:43 AM CST
+ ************************************************************************/
+
+#include<iostream>
+#include<vector>
+#include<stack>
+using namespace std;
+bool IsPopOrder(vector<int >pushV,vector<int> popV){
+    size_t sz1=pushV.size();
+    size_t sz2=popV.size();
+    stack<int> st;
+    if(sz1>0&&sz2>0){
+        int iPush,iPop;
+        iPush=0;
+        iPop=0;
+        while(iPop<sz2){
+            while(st.empty()||st.top()!=popV[iPop]){
+                if(iPush<=sz1){
+                    st.push(pushV[iPush]);
+                    iPush++;
+                }else{
+                    break;
+                }
+            }
+            if(st.top()!=popV[iPop]){
+                break;
+            }else{
+            st.pop();
+            iPop++;
+            }
+        }
+        if(st.empty()&&iPush==sz1&&iPop==sz2)
+            return true;
+    }
+    return false;
+}
+int main(){
+    int a[5]={1,2,3,4,5};
+    vector<int > V1(a,a+5);
+    int b[5]={4,5,3,2,1};
+    int c[5]={4,3,5,1,2};
+    bool i=IsPopOrder(V1,V2);
+    cout<<i;
+    return 0;
+}

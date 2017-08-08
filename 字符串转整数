@@ -1,0 +1,36 @@
+/*************************************************************************
+	> File Name: strtoi.c
+	> Author: 
+	> Mail: 
+	> Created Time: Sat 15 Jul 2017 11:22:01 AM CST
+ ************************************************************************/
+
+#include<iostream>
+#include<string>
+using namespace std;
+int StirToint(string str){
+    static int i=0;
+    static int j=1;
+    if(str.size()==0)
+        return i;
+    else if(str[0]>='0'&&str[0]<='9'){
+        int h;
+        h=StirToint(&str[1]);
+        i=((int)h-48)*j+i;
+        j=j*10;
+        cout<<i<<endl;
+    } 
+    else if(str[0]=='-'){
+        i=-1;
+        StirToint(&str[1]);
+    }else
+        return 0;
+};
+int main()
+{
+    int o;
+    string str="123";
+    o=StirToint(str);
+    //std::cout<<o<<endl;
+    return 0;
+}
